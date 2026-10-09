@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="unique corn/unique corn.vcxproj" />
+  <Project Path="unique corn/unique corn.vcxproj" Id="5955c5e6-713c-4d8c-9a98-9f67ba01fed1" />
 </Solution>

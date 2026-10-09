@@ -3,10 +3,10 @@
 #include <string>
 
 using namespace std;
+
+vector<string> names;
 class uniqorn
 {
-private:
-	static vector<string> names;
 public:
 	string name;
 	uniqorn(string n)
@@ -18,38 +18,46 @@ public:
 		{
 			if (*i == n)
 			{
-				cout << "this uniqorn has the same name as another!! BEGONE FOUL CREATURE!!!!!!!" << endl;
+				cout << "this uniqorn has the same name as another, " << n << "!! BEGONE FOUL CREATURE!!!!!!!" << endl;
 				uniq = false;
-				break;
 			}
 		}
+		name = n;
+		names.push_back(n);
 		if (uniq)
-		{
-			cout << "a worthy uniqorn has been born" << endl;
-			name = n;
-			names.push_back(n);
-		}
-		else delete this;
+			cout << "a worthy uniqorn has been born: " << name << endl;
+		else throw exception("THIS UNIQORN IS UNWORTHY!");
+		
 	}
 
 	~uniqorn()
 	{
-		auto start = names.cbegin();
-		auto end = names.cend();
+		cout << "goodbye, " << name << endl;
+		auto start = names.begin();
+		auto end = names.end();
+		vector<string>::iterator found = end;
 		for (auto i = start; i != end; i++)
 		{
 			if (*i == name)
 			{
-				names.erase(i);
+				found = i;
 			}
+		}
+		if (found != end)
+		{
+			names.erase(found);
 		}
 	}
 };
 
 int main()
 {
-	uniqorn x("harry");
-	uniqorn y("bob");
-	uniqorn z("joe");
-	uniqorn w("bob");
+	uniqorn* x = new uniqorn("harry");
+	uniqorn* y = new uniqorn("bob");
+	uniqorn* z = new uniqorn("joe");
+	delete y;
+	uniqorn* a = new uniqorn("bob");
+	delete x;
+	uniqorn* b = new uniqorn("harry");
+	uniqorn* c = new uniqorn("joe");
 }
